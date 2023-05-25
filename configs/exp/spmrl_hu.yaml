@@ -1,0 +1,52 @@
+# @package _global_
+defaults:
+  - /optim: finetune_bert
+  - /model: pointer_wo_maxpooling
+  - /datamodule: spmrl
+  
+
+trainer:
+  min_epochs: 1
+  max_epochs: 100
+
+# 16*250=4000
+accumulation: 1
+
+datamodule:
+  max_tokens: 3000
+  max_tokens_test: 3000
+  max_len: 200
+  use_bert: True
+  lan: hu
+  bert: 'bert-base-multilingual-cased'
+
+  
+
+# save checkpoints of the model.
+checkpoint: False
+
+model:
+  embeder:
+    finetune: True
+  
+optim:
+  only_embeder: True
+  lr_rate: 50
+  warmup: 0.5
+
+
+
+
+
+
+
+callbacks:
+  transformer_scheduler:
+    _target_: src.callbacks.transformer_scheduler.TransformerLrScheduler
+    warmup: ${optim.warmup}
+
+  pretty_progress_bar:
+    _target_: src.callbacks.progressbar.PrettyProgressBar
+    refresh_rate: 1
+    process_position: 0
+

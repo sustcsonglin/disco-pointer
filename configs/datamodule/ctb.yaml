@@ -1,0 +1,31 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.const_data_pointer.ConstData4Pointer
+  train_const: "${root}/data/ctb/train.pid"
+  dev_const: "${root}/data/ctb/dev.pid"
+  test_const: "${root}/data/ctb/test.pid"
+  cache: "${root}/data/ctb/ctb.const.pickle"
+  cache_bert: "${root}/data/ctb/ctb.const.cache_bert"
+  ext_emb_path: "${root}/data/ctb/glove.6B.100d.txt"
+  clean_word: False
+  bert: 'bert-base-chinese'
+  name: 'cbt'
+  use_word: False
+
+
+
+
+model:
+  metric:
+    target:
+      _target_: src.model.metric.SpanMetric
+    write_result_to_file: True
+
+
+
+
+

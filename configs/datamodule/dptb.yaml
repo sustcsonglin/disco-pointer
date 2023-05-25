@@ -1,0 +1,26 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.disco_pointer.DiscoData
+  train_const: "${root}/data/dptb/train_punct.discbracket"
+  dev_const:  "${root}/data/dptb/dev_punct.discbracket"
+  test_const:  "${root}/data/dptb/test_punct.discbracket"
+  proper_prm: "${root}/data/proper.prm"
+  cache: "${root}/data/dptb/dptb_generate.pickle"
+  bert: 'bert-large-cased'
+  cache_bert: "${root}/data/dptb/bert_large.pickle"
+  clean_word: False
+  name: 'dptb'
+
+
+model:
+  metric:
+    target:
+      _target_: src.model.metric.DiscoSpanMetric
+    write_result_to_file: True
+
+
+

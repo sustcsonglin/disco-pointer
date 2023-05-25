@@ -1,0 +1,57 @@
+# @package _global_
+defaults:
+  - /optim: finetune_bert
+  - /model: pointer
+  - /datamodule: ctb
+  
+trainer:
+  min_epochs: 1
+  max_epochs: 15
+
+# 16*250=4000
+accumulation: 1
+
+
+datamodule:
+  max_tokens: 300
+  max_tokens_test: 300
+  max_len: 200
+  use_bert: True  
+
+  cache: "${root}/data/ctb/ctb.const.pickle"
+  cache_bert: "${root}/data/ctb/ctb.const.cache_bert"
+  ext_emb_path: "${root}/data/ctb/glove.6B.100d.txt"
+  clean_word: False
+  bert: 'bert-base-chinese'
+  name: 'ctb_bert_base'
+  use_word: False
+
+# save checkpoints of the model.
+checkpoint: False
+
+
+
+model:
+  embeder:
+    finetune: True
+
+  biaffine_size: 300 
+  
+
+
+optim:
+  only_embeder: True
+  lr_rate: 50
+  warmup: 0.1
+
+
+callbacks:
+  transformer_scheduler:
+    _target_: src.callbacks.transformer_scheduler.TransformerLrScheduler
+    warmup: ${optim.warmup}
+
+  pretty_progress_bar:
+    _target_: src.callbacks.progressbar.PrettyProgressBar
+    refresh_rate: 1
+    process_position: 0
+

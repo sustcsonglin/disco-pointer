@@ -1,0 +1,38 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.const_data_pointer.ConstData4Pointer
+  lan: fr
+  abbreviation:
+    fr: french
+    kr: korean
+    de: german
+    hu: hungarian
+    po: polish
+    eu: basque
+
+  train_const: "${root}/data/SPMRL/${.abbreviation.${.lan}}/train.pid"
+  dev_const: "${root}/data/SPMRL/${.abbreviation.${.lan}}/dev.pid"
+  test_const: "${root}/data/SPMRL/${.abbreviation.${.lan}}/test.pid"
+  cache: "${root}/data/SPMRL/${.abbreviation.${.lan}}/data.cache"
+  bert: 'bert-base-multilingual-cased'
+  cache_bert: "${root}/data/SPMRL/${.abbreviation.${.lan}}/bert.cache"
+#  ext_emb_path: "${root}/data/ptb/glove.6B.100d.txt"
+  clean_word: False
+  name: 'spmrl_${datamodule.lan}'
+  add_top: False
+
+
+model:
+  metric:
+    target:
+      _target_: src.model.metric.SpanMetric_SPMRL
+    write_result_to_file: True
+
+
+
+
+

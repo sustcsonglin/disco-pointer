@@ -1,0 +1,35 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.disco_pointer.DiscoData
+  train_const: "${root}/data/tiger_spmrl/train_punct.discbracket"
+  dev_const:  "${root}/data/tiger_spmrl/dev_punct.discbracket"
+  test_const:  "${root}/data/tiger_spmrl/test_punct.discbracket"
+  proper_prm: "${root}/data/proper.prm"
+
+
+  cache: "${root}/data/tiger_spmrl/tiger.pickle"
+  bert: '${root}/data/bert/glarge'
+  cache_bert: "${root}/data/tiger_spmrl/tiger_cache_bert_large"
+  ext_emb_path: "${root}/data/tiger_spmrl/glove.6B.100d.txt"
+
+  clean_word: False
+  name: 'tiger'
+
+
+# TODO: 写一个discontinuous的metric.
+# TODO: 31/08/22
+model:
+  metric:
+    target:
+      _target_: src.model.metric.DiscoSpanMetric
+    write_result_to_file: True
+
+
+
+
+
+

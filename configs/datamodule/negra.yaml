@@ -1,0 +1,37 @@
+# @package _global_
+defaults:
+  - _base
+
+datamodule:
+  target:
+    _target_: src.datamodule.disco_pointer.DiscoData
+  train_const: "${root}/data/negra/train_punct.discbracket"
+  dev_const:  "${root}/data/negra/dev_punct.discbracket"
+  test_const:  "${root}/data/negra/test_punct.discbracket"
+  cache: "${root}/data/negra/negra_generate.pickle"
+  bert: '${root}/data/bert/glarge'
+  cache_bert: "${root}/data/negra/negra_cache_bert_large.pickle"
+  proper_prm: "${root}/data/proper.prm"
+
+
+  # no use. ignore this plz.
+  ext_emb_path: "${root}/data/negra/glove.6B.100d.txt"
+
+  clean_word: False
+  name: 'negra'
+
+# TODO: 写一个discontinuous的metric.
+# TODO: 31/08/22
+model:
+  metric:
+    target:
+      _target_: src.model.metric.DiscoSpanMetric
+    write_result_to_file: True
+
+
+
+
+
+
+
+

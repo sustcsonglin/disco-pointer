@@ -1,0 +1,57 @@
+# @package _global_
+
+
+model:
+  target:
+    _target_: src.model.disco_pointer.PointerNet
+
+  decode_type: beam_search
+  encoder_type: LSTM
+  beam_size: 1
+
+  use_hx: False
+  use_focus: False
+  use_prev_span: True
+  use_prev_label: False
+  use_remain_span: False
+  use_action_mask: False
+
+  n_lstm_hidden: 1000
+  input_span_size: 500
+  label_emb_size: 500
+  biaffine_size: 500
+  lstm_dropout: 0.33
+
+
+
+  lstm_encoder:
+    embed_dropout: .33
+    embed_dropout_type: shared
+    lstm_dropout: .33
+    n_lstm_hidden: 1000
+    n_lstm_layers: 3
+    before_lstm_dropout: 0.
+
+
+
+  embeder:
+    #pos
+    n_pos_embed: 100
+    #char
+    n_char_embed: 50
+    n_char_out: 100
+    char_input_dropout: 0.
+    # bert
+    n_bert_out: 1024
+    n_bert_layers: 4
+    mix_dropout: 0.
+    use_projection: False
+    use_scalarmix: False
+    finetune: False
+    #word
+    n_embed: 300
+
+
+  name: 'disco-pointer'
+
+
