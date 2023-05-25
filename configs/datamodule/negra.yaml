@@ -13,7 +13,7 @@ datamodule:
   cache_bert: "${root}/data/negra/negra_cache_bert_large.pickle"
   proper_prm: "${root}/data/proper.prm"
 
-
+  
   # no use. ignore this plz.
   ext_emb_path: "${root}/data/negra/glove.6B.100d.txt"
 
