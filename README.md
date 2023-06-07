@@ -1,5 +1,5 @@
 # disco-pointer
-The official implementation of ACL2023: Don't Parse, Choose Spans! Continuous and Discontinuous Constituency Parsing via Autoregressive Span Selection
+The official implementation of ACL2023: [Don't Parse, Choose Spans! Continuous and Discontinuous Constituency Parsing via Autoregressive Span Selection](https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/acl23span.pdf)
 
 ## Setup
 Environment 
