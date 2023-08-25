@@ -23,7 +23,7 @@ python train.py +exp=tiger_bert_large seed=0,1,2 --multirun
 
 
 ### OOM
-If you encounter out-of-memory issues, you could use gradient accumulation technique by changing the hyperparameters in configs/exp/*.yaml file and    letting accumulation * datamodule.max_token = 3000.  For example, set accumulation=15 and datamodule.max_token=200 if your GPU memory is small(e.g.,12GB). 
+If you encounter out-of-memory issues, you could use gradient accumulation technique by changing the hyperparameters in configs/exp/*.yaml file and    letting accumulation * datamodule.max_tokens = 3000.  For example, set accumulation=15 and datamodule.max_tokens=200 if your GPU memory is small(e.g.,12GB). 
 
 ### BERT path
 You can specift either BERT name or path/to/your/bert/repo at datamodule.bert in config/exp/*.yaml files
